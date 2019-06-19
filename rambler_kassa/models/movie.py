@@ -36,4 +36,4 @@ class Movie(BaseModel):
         res = v.split(',')
         if not res or not res[0]:
             return []
-        return res
+        return [i.strip() for i in res]
