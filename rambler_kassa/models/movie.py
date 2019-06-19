@@ -12,7 +12,7 @@ class Movie(BaseModel):
     Thumbnail: str
     Cast: List[str]
     Description: str
-    Director: str
+    Director: List[str]
     CreatorName: Optional[str]
     CreatorObjectID: Optional[int]
     Year: str
@@ -31,7 +31,7 @@ class Movie(BaseModel):
     AfishaClassID: int
     AfishaObjectID: int
 
-    @validator('Genre', 'Country', 'Cast', pre=True, whole=True)
+    @validator('Genre', 'Country', 'Cast', 'Director', pre=True, whole=True)
     def str_to_list(cls, v):
         res = v.split(',')
         if not res or not res[0]:
