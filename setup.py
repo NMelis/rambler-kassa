@@ -15,6 +15,7 @@ setuptools.setup(
     install_requires=[
         'requests==2.21.0',
         'bs4==0.0.1',
+        'pydantic',
         'python-slugify==3.0.2'
     ],
     classifiers=[
