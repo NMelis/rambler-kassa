@@ -13,9 +13,10 @@ class ScheduleType(Enum):
 
 class RamblerKassa(object):
 
-    def __init__(self, api_key: str, city_id: int):
+    def __init__(self, api_key: str, city_id: int, widget_id: int = 0):
         self.api_key = api_key
         self.city_id = city_id
+        self.widget_id = widget_id
 
     def get_movies(self, **kwargs) -> List[Movie]:
         """Return of current films from the cinema."""
@@ -49,6 +50,13 @@ class RamblerKassa(object):
             ScheduleType.Movie,
             **kwargs,
         )
+
+    def get_url_buy_ticket(self, session_id):
+        if not self.widget_id:
+            print("You do not set widget_id")
+        return get_widget_hallplan_url(session_id=session_id,
+                                       city_id=self.city_id,
+                                       widget_id=self.widget_id)
 
     def _get_schedules(self, schedule_type: ScheduleType, **kwargs):
         url = None

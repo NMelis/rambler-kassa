@@ -22,6 +22,12 @@ def get_movie_link(**kwargs):
     return _set_params_to_url(MOVIE_LINK.format(api_key=api_key), kwargs)
 
 
+def get_widget_hallplan_url(**kwargs):
+    return "https://widget.kassa.rambler.ru/place/hallplan" \
+           "?sessionid={session_id}&WidgetID={widget_id}&GeoPlaceID={city_id}"\
+        .format(**kwargs)
+
+
 def _set_params_to_url(url, params):
     url_parts = list(urlparse.urlparse(url))
     query = dict(urlparse.parse_qsl(url_parts[4]))
