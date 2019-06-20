@@ -1,6 +1,7 @@
 from datetime import datetime
+from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 
 
 class Schedule(BaseModel):
@@ -15,10 +16,16 @@ class Schedule(BaseModel):
     IsSaleAvailable: bool
     IsReservationAvailable: bool
     IsWithoutSeats: bool
-    MinPrice: str
-    MaxPrice: str
+    MinPrice: Optional[int]
+    MaxPrice: Optional[int]
     HallID: str
     HallName: str
     FeeType: str
     FeeValue: str
 
+    @validator('MinPrice', 'MaxPrice', pre=True, whole=True)
+    def str_to_int(cls, v):
+        try:
+            return int(v)
+        except ValueError:
+            return None
