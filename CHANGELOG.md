@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.2] - 2019-10-20
 ### Added
+- model Schedule: validate min and max price to int or None
 - get_url_buy_ticket - Get url to buy ticket by session_id
 
 ## [0.0.1] - 2019-06-19
