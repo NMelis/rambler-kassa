@@ -21,8 +21,8 @@ class Movie(BaseModel):
     IsNonStop: bool
     SubCreationIDs: List[int]
     Rating: str
-    Trailers: Optional[str]
-    Frames: Optional[str]
+    Trailers: Optional[List[str]]
+    Frames: Optional[List[str]]
     ReleaseDate: date
     KinoplanID: Optional[int]
     ObjectID: int
@@ -37,3 +37,7 @@ class Movie(BaseModel):
         if not res or not res[0]:
             return []
         return [i.strip() for i in res]
+
+    @validator('Trailers', pre=True, whole=True)
+    def trailers(cls, v):
+        return [i[2:] if '//' in i[0:2] else i for i in v]
