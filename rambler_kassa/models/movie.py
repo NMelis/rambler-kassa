@@ -9,7 +9,7 @@ class Movie(BaseModel):
     Country: List[str]
     ViewCountDaily: int
     AgeRestriction: str
-    Thumbnail: str
+    Thumbnail: Optional[str]
     Cast: List[str]
     Description: str
     Director: List[str]
@@ -28,8 +28,8 @@ class Movie(BaseModel):
     ObjectID: int
     ClassType: str
     Name: str
-    AfishaClassID: int
-    AfishaObjectID: int
+    AfishaClassID: Optional[int]
+    AfishaObjectID: Optional[int]
 
     @validator('Genre', 'Country', 'Cast', 'Director', pre=True, whole=True)
     def str_to_list(cls, v):
